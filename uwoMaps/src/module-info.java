@@ -6,4 +6,5 @@
  *
  */
 module uwoMaps {
+	requires java.desktop;
 }
