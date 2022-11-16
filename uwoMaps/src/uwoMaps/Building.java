@@ -7,7 +7,7 @@ public class Building {
 	public POI[] POIs;
 	private Integer buildingPosX;
 	private Integer buildingPosY;
-	private Map[] maps;
+	private Floor[] floors;
 	
 	public Building(String name, Integer posX, Integer posY) {
 		buildingName = name;
