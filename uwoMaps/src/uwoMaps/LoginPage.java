@@ -101,7 +101,8 @@ public class LoginPage extends JFrame implements ActionListener{
 		
 		if (e.getSource() == forgotPasswordButton) {
 			forgotPasswordLabel.setVisible(true);
-			userIDField.setText("");
+			this.dispose();
+			ForgotPasswordPage forgotPage = new ForgotPasswordPage(loginInfo);
 			//prompt them to enter a different password
 		}
 		
