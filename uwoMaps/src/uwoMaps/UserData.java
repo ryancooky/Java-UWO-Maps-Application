@@ -3,7 +3,8 @@ package uwoMaps;
 public class UserData {
 	private String id;
 	private String password;
-	private Favourite[] favs;
+	private Favourite[] favourites;
+	private UserPOI[] customPOIs;
 	
 	
 	public String getId() {
@@ -15,6 +16,6 @@ public class UserData {
 	}
 	
 	public Favourite[] getFavPOIs() {
-		return favs;
+		return favourites;
 	}
 }

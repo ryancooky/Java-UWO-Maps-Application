@@ -3,7 +3,7 @@ package uwoMaps;
 /**
  * 
  * @author davidalter dalter4@uwo.ca
- * @version 1.1
+ * @version 1.2
  * @since 1.0
  * 
  * This class represents the basic template for a Point of Interest 
@@ -27,12 +27,6 @@ public class POI {
 	private Boolean visibility;
 	
 	/*
-	 * X and Y positions on the floor that the Point of interest is located on
-	 */
-	public float posX;
-	public float posY;
-	
-	/*
 	 * Floor that the POI is located on
 	 */
 	private Floor onFloor;
@@ -40,15 +34,11 @@ public class POI {
 	/**
 	 * Constructor that initializes all the instance variables
 	 * @param POIname - name of the point of interest
-	 * @param Xposition - x posiiton on the map
-	 * @param Yposition - y position on the map
 	 * @param floor - floor that the POI is associated with
-	 * @parm vis - whether or not the POI is visible on the map
+	 * @param vis - whether or not the POI is visible on the map
 	 */
-	public POI(String POIname, float Xposition, float Yposition, Floor floor , Boolean vis) {
+	public POI(String POIname, Floor floor , Boolean vis) {
 		name = POIname;
-		posX = Xposition;
-		posY = Yposition;
 		onFloor = floor;
 		visibility = vis;
 	}
