@@ -11,10 +11,11 @@ public class UserData {
 	 */
 	private HashMap<String, String> loginInfo = new HashMap<String,String>();
 	
+	private HashMap<String, Favourite[]> favInfo = new HashMap<String, Favourite[]>();
 	
-	private Favourite[] favourites;
-	private UserPOI[] customPOIs;
+	private HashMap<String, UserPOI[]> customPOIInfo = new HashMap<String, UserPOI[]>();
 	
+
 	UserData(String id, String password){
 		loginInfo.put(id, password);
 	}
@@ -23,7 +24,13 @@ public class UserData {
 		return loginInfo;
 	}
 	
-	public Favourite[] getFavPOIs() {
-		return favourites;
+	public Favourite[] getFavs(String id) {
+		return favInfo.get(id);
 	}
+	
+	public UserPOI[] getCustomPOIs(String id) {
+		return customPOIInfo.get(id);
+	}
+	
+	
 }

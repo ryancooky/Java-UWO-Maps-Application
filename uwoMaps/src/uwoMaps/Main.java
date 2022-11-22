@@ -5,13 +5,16 @@ import javax.swing.JFrame;
 import java.awt.*;
 
 public class Main {
+	
+	public static LoginPage MFRAME;
+	
 	public static void main(String [] args) {
 		
 		//test user
-		UserData user1 = new UserData("david", "uwo123");
+		UserData user1 = new UserData("1", "2");
 		
 		//test login frame
-		LoginPage login = new LoginPage(user1.getLoginInfo());
+		MFRAME = new LoginPage(user1.getLoginInfo());
 		
 	}
 }

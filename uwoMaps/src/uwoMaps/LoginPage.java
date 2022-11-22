@@ -80,31 +80,37 @@ public class LoginPage extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		
 		if(e.getSource() == signInButton) {
-			String proposedUser = userIDField.getText();
-			String proposedPassword = String.valueOf(userPasswordField.getPassword());
-			//check if the password is correct for the username in the hashmap
-			
-			if (loginInfo.containsKey(proposedUser)) {
-				if (loginInfo.get(proposedUser).equals(proposedPassword)) {
-					//credentials are correct, proceed to ask if editing
-					this.dispose();
-					HomePage homePage = new HomePage(proposedUser);
-				} else {
-					loginResultLabel.setForeground(Color.red);
-					loginResultLabel.setText("Incorrect Password");
-				}
-			} else {
-				loginResultLabel.setForeground(Color.red);
-				loginResultLabel.setText("No userId found");
-			}
+			openHome();
 		}
 		
 		if (e.getSource() == forgotPasswordButton) {
 			forgotPasswordLabel.setVisible(true);
-			this.dispose();
-			ForgotPasswordPage forgotPage = new ForgotPasswordPage(loginInfo);
+			openForgotPass();
 			//prompt them to enter a different password
 		}
 		
+	}
+	
+	public void openForgotPass(/*your parms*/){
+		ForgotPasswordPage oFrm = new ForgotPasswordPage(/*your parms*/);
+    }
+	
+	public void openHome() {
+		String proposedUser = userIDField.getText();
+		String proposedPassword = String.valueOf(userPasswordField.getPassword());
+		//check if the password is correct for the username in the hashmap
+		
+		if (loginInfo.containsKey(proposedUser)) {
+			if (loginInfo.get(proposedUser).equals(proposedPassword)) {
+				//credentials are correct, proceed to ask if editing
+				HomePage homePage = new HomePage(proposedUser);
+			} else {
+				loginResultLabel.setForeground(Color.red);
+				loginResultLabel.setText("Incorrect Password");
+			}
+		} else {
+			loginResultLabel.setForeground(Color.red);
+			loginResultLabel.setText("No userId found");
+		}
 	}
 }

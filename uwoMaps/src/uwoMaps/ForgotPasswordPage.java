@@ -19,10 +19,11 @@ public class ForgotPasswordPage extends JFrame implements ActionListener{
 	JButton backButton = new JButton("Back to Login");
 	
 	HashMap<String,String> loginInfo = new HashMap<String,String>();
+
 	
-	ForgotPasswordPage(HashMap<String,String> originalLoginInfo){
+	ForgotPasswordPage(){
 		
-		loginInfo = originalLoginInfo;
+		Main.MFRAME.setVisible(false);
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(null);
@@ -39,6 +40,9 @@ public class ForgotPasswordPage extends JFrame implements ActionListener{
 		resetButton.setBounds(175, 240, 120, 40);
 		backButton.setBounds(0, 0, 120, 40);
 		
+		backButton.addActionListener(this);
+		resetButton.addActionListener(this);
+		
 		
 		this.add(pageLabel);
 		this.add(emailLabel);
@@ -49,6 +53,9 @@ public class ForgotPasswordPage extends JFrame implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		if (e.getSource() == backButton) {
+			Main.MFRAME.setVisible(true);
+	        this.dispose();
+		}
 	}
 }
