@@ -1,38 +1,177 @@
 package uwoMaps;
 
+import java.util.ArrayList;
+/**
+ * 
+ * @author Minsoo Park, mpark227@uwo.ca
+ * @version 1.1
+ * @since 1.0
+ * 
+ * This class represents the Building class which inheritance from CampusMap class
+ * 
+ * <p>
+ * Building class is one of our main class which indicates names, position, address, and floors
+ * <p>
+ */
+
 public class Building {
+	
+	/**
+	 * @param buildingName - name of the building
+	 * @param buildingAddress - address of the building
+	 * @param numOfFloors - number of floors which are locating in current building
+	 * @param buildingPosX - X postion of building
+	 * @param buildingPosY - Y postion of building
+	 * @param currentFloor - represent current floor
+	 * @param mode - indicate users' mode
+	 * @param floor - list of floor
+	 */
 	public String buildingName;
 	public String buildingAddress;
 	public Integer numOfFloors;
-	public POI[] POIs;
 	private Integer buildingPosX;
 	private Integer buildingPosY;
-	private Floor[] floors;
+	private Floor currentFloor;
+	public Edit mode;
+	
+	ArrayList<Floor> floors = new ArrayList<>();
+	
+	/*
+	 * Constructor that initializes Building with null value
+	 */
+	public Building() {
+		buildingName = null;
+		buildingPosX = null;
+		buildingPosX = null;
+	}
+	
+	/*
+	 * Constructor that initializes all the instance variables with provided data
+	 */
 	
 	public Building(String name, Integer posX, Integer posY) {
-		buildingName = name;
+		this.buildingName = name;
 		setPosX(posX);
 		setPosY(posY);
 	}
-
+	
+	/**
+	 * Gets the position of X
+	 * @return buildingPosX
+	 */
 	public Integer getBuildingPosX() {
 		return buildingPosX;
 	}
-
+	
+	/**
+	 * Sets the position of X
+	 */
 	public void setPosX(Integer buildingPosX) {
 		this.buildingPosX = buildingPosX;
 	}
-
+	/**
+	 * Gets the position of Y
+	 * @return buildingPosY
+	 */
 	public Integer getPosY() {
 		return buildingPosY;
 	}
-
+	
+	/**
+	 * Sets the position of Y
+	 */
 	public void setPosY(Integer buildingPosY) {
 		this.buildingPosY = buildingPosY;
 	}
 	
+	/**
+	 * Gets the name of building
+	 * @return buildingName
+	 */
+	public String getName() {
+		return buildingName;
+	}
+	
+	/**
+	 * Gets the address of building
+	 * @return buildingAddress
+	 */
+	public String getAddress() {
+		return this.buildingAddress;
+	}
+	
+	/**
+	 * Sets the address of building
+	 */
 	public void setAddress(String address) {
 		buildingAddress = address;
 	}
 	
+	/**
+	 * Gets the number of floors
+	 * @return numOfFloors
+	 */
+	public Integer getNumofFloors() {
+		return this.numOfFloors;
+	}
+	
+	/**
+	 * Gets the current floors
+	 * @return currentFloor
+	 */
+	public Floor getFloor() {
+		return this.currentFloor;
+	}
+	
+	/**
+	 * Sets the provided floor to current floor
+	 */
+	public void setFloor(Floor floor) {
+		this.currentFloor = floor;
+	}
+	
+	/**
+	 * add selected floor to floor list
+	 */
+	public void addFloor(Floor targetFloor, Edit Mode) {
+		//check the mode
+		if (true) {
+			floors.add(targetFloor);
+			numOfFloors = numOfFloors + 1;
+		}
+	}
+	
+	/**
+	 * add current floor to floor list
+	 */
+	public void addFloor(Edit Mode) {
+		if (true) {
+			floors.add(this.currentFloor);
+			numOfFloors = numOfFloors + 1;
+		}
+	}
+	
+	/**
+	 * remove target floor from floor list
+	 */
+	public void removeFloor (Floor targetFloor, Edit mode) {
+		if (true) {
+			if (floors.contains(targetFloor)) {
+				floors.remove(targetFloor);
+				numOfFloors = numOfFloors -1;
+			}
+		}
+	}
+	
+	/**
+	 * remove current floor from floor list
+	 */
+	public void removeFloor (Edit mode) {
+		if (true) {
+			if (floors.contains(this.currentFloor)) {
+				floors.remove(this.currentFloor);
+				numOfFloors = numOfFloors -1;
+			}
+		}
+	}
 }
