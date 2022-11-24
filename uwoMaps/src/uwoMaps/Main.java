@@ -6,7 +6,8 @@ import java.awt.*;
 
 public class Main {
 	
-	public static LoginPage MFRAME;
+	public static LoginPage loginFRAME;
+	public static HomePage MFRAME;
 	
 	public static void main(String [] args) {
 		
@@ -14,7 +15,8 @@ public class Main {
 		UserData user1 = new UserData("1", "2");
 		
 		//test login frame
-		MFRAME = new LoginPage(user1.getLoginInfo());
+		loginFRAME = new LoginPage(user1.getLoginInfo());
+		
 		
 	}
 }

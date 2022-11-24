@@ -16,9 +16,7 @@ public class HomePage extends JFrame implements ActionListener{
 	JButton signOutButton = new JButton();
 	JButton myAccountButton = new JButton();
 	
-	JButton mcButton = new JButton();
-	JButton hsbButton = new JButton();
-	JButton builidng3Button = new JButton();
+	JButton goToMapButton = new JButton();
 	
 	JLabel buildingsLabel = new JLabel("List of Buildings: ");
 	JLabel favouritesLabel = new JLabel("Favourite POIs: ");
@@ -32,7 +30,8 @@ public class HomePage extends JFrame implements ActionListener{
 	HomePage(String userId){
 		
 		
-		Main.MFRAME.setVisible(false);
+		Main.loginFRAME.setVisible(false);
+		Main.MFRAME = this;
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(null);
@@ -58,11 +57,16 @@ public class HomePage extends JFrame implements ActionListener{
 		myAccountButton.setText("My Account");
 		myAccountButton.setBounds(600,0,100,40);
 		
+		goToMapButton.addActionListener(this);
+		goToMapButton.setText("Go to Map");
+		goToMapButton.setBounds(50, 120, 100, 40);
+		
 		searchField.setBounds(350, 120, 240, 40);
 		searchField.setText("search for a class");
 
 		this.add(signOutButton);
 		this.add(myAccountButton);
+		this.add(goToMapButton);
 		this.add(buildingsLabel);
 		this.add(favouritesLabel);
 		this.add(searchLabel);
@@ -73,10 +77,17 @@ public class HomePage extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == signOutButton) {
-			Main.MFRAME.setVisible(true);
+			Main.loginFRAME.setVisible(true);
 	        this.dispose();
 		}
+		if (e.getSource() == goToMapButton) {
+			openCampusMap();
+		}
 		
+	}
+	
+	public void openCampusMap(/*your parms*/){
+		CampusMap campusFrm = new CampusMap();
 	}
 
 }

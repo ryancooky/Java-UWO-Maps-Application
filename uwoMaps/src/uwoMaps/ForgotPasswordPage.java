@@ -54,7 +54,7 @@ public class ForgotPasswordPage extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == backButton) {
-			Main.MFRAME.setVisible(true);
+			Main.loginFRAME.setVisible(true);
 	        this.dispose();
 		}
 	}
