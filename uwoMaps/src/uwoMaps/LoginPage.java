@@ -104,8 +104,8 @@ public class LoginPage extends JFrame implements ActionListener{
 		if (loginInfo.containsKey(proposedUser)) {
 			if (loginInfo.get(proposedUser).equals(proposedPassword)) {
 				//credentials are correct, proceed to ask if editing
-				HomePage homePage = new HomePage(proposedUser);
 				userdata = new UserData(proposedUser, proposedPassword);
+				HomePage homePage = new HomePage(proposedUser);
 			} else {
 				loginResultLabel.setForeground(Color.red);
 				loginResultLabel.setText("Incorrect Password");

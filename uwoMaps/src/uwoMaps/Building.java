@@ -32,7 +32,6 @@ public class Building {
 	private Integer buildingPosX;
 	private Integer buildingPosY;
 	private Floor currentFloor;
-	public Edit mode;
 	
 	ArrayList<Floor> floors = new ArrayList<>();
 	
@@ -133,7 +132,7 @@ public class Building {
 	/**
 	 * add selected floor to floor list
 	 */
-	public void addFloor(Floor targetFloor, Edit Mode) {
+	public void addFloor(Floor targetFloor) {
 		//check the mode
 		if (true) {
 			floors.add(targetFloor);
@@ -144,7 +143,7 @@ public class Building {
 	/**
 	 * add current floor to floor list
 	 */
-	public void addFloor(Edit Mode) {
+	public void addFloor() {
 		if (true) {
 			floors.add(this.currentFloor);
 			numOfFloors = numOfFloors + 1;
@@ -154,7 +153,7 @@ public class Building {
 	/**
 	 * remove target floor from floor list
 	 */
-	public void removeFloor (Floor targetFloor, Edit mode) {
+	public void removeFloor (Floor targetFloor) {
 		if (true) {
 			if (floors.contains(targetFloor)) {
 				floors.remove(targetFloor);
@@ -166,7 +165,7 @@ public class Building {
 	/**
 	 * remove current floor from floor list
 	 */
-	public void removeFloor (Edit mode) {
+	public void removeFloor () {
 		if (true) {
 			if (floors.contains(this.currentFloor)) {
 				floors.remove(this.currentFloor);
