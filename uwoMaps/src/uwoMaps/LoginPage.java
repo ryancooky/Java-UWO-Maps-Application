@@ -27,6 +27,7 @@ public class LoginPage extends JFrame implements ActionListener{
 	JLabel passwordLabel = new JLabel("Password:");
 	JLabel forgotPasswordLabel;
 	JLabel loginResultLabel = new JLabel();
+	public UserData userdata;
 	
 	LoginPage(HashMap<String,String> originalLoginInfo){
 		
@@ -104,6 +105,7 @@ public class LoginPage extends JFrame implements ActionListener{
 			if (loginInfo.get(proposedUser).equals(proposedPassword)) {
 				//credentials are correct, proceed to ask if editing
 				HomePage homePage = new HomePage(proposedUser);
+				userdata = new UserData(proposedUser, proposedPassword);
 			} else {
 				loginResultLabel.setForeground(Color.red);
 				loginResultLabel.setText("Incorrect Password");

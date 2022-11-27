@@ -27,8 +27,10 @@ public class HomePage extends JFrame implements ActionListener{
 	
 	Favourite[] favList;
 	
+	public String user;
+	
+	
 	HomePage(String userId){
-		
 		
 		Main.loginFRAME.setVisible(false);
 		Main.MFRAME = this;
@@ -39,7 +41,7 @@ public class HomePage extends JFrame implements ActionListener{
 		this.setVisible(true);
 		this.setTitle("Uwo Maps Home");
 		
-
+		user = userId;
 		
 		buildingsLabel.setBounds(50,80,150,40);
 		

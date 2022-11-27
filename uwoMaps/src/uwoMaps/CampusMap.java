@@ -13,7 +13,7 @@ import javax.swing.JList;
 /**
  * 
  * @author Minsoo Park, mpark227@uwo.ca
- * @version 1.1
+ * @version 1.2
  * @since 1.0
  * 
  * This class represents the basic template for a Campus Map
@@ -36,7 +36,6 @@ public class CampusMap extends JFrame implements ActionListener{
 	public Building firstBuilding;
 	public Building secondBuilding;
 	public Building thirdBuilding;
-	public Edit mode;
 	
 	ArrayList<Building> buildingList = new ArrayList<>();
 	
@@ -46,17 +45,18 @@ public class CampusMap extends JFrame implements ActionListener{
 	JButton removeBtn = new JButton("Remove");
 	JButton helpBtn = new JButton("Help");
 	
+	boolean canEdit;
+	
 	/*
 	 * Constructor that initializes all the instance variables
 	 * setting the button and list frame
 	 */
-	
 	public CampusMap() {
+		
 		//Next version should include way to store selected building data
 		firstBuilding  = new Building("Alumni Hall", 3 , 4);
 		secondBuilding = null;
 		thirdBuilding = null;
-		mode = null;
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(null);
@@ -83,6 +83,14 @@ public class CampusMap extends JFrame implements ActionListener{
 		this.add(removeBtn);
 		this.add(helpBtn);
 		
+		
+		//added by dalter4@uwo.ca, checks the userdata if user can edit and sets the variable
+		if (Main.loginFRAME.userdata.canUserEdit(Main.MFRAME.user)) {
+			canEdit = true;
+		} else {
+			canEdit = false;
+		}
+		
 	}
 	
 	/**
@@ -104,9 +112,9 @@ public class CampusMap extends JFrame implements ActionListener{
 	/**
 	 * add target building to building list
 	 */
-	public void addBuilding(Building targetBuilding, Edit Mode) {
+	public void addBuilding(Building targetBuilding) {
 		//check the mode
-		if (true) {
+		if (canEdit) {
 			buildingList.add(targetBuilding);
 		}
 	}
@@ -114,8 +122,8 @@ public class CampusMap extends JFrame implements ActionListener{
 	/**
 	 * add current building to building list
 	 */
-	public void addBuilding(Edit Mode) {
-		if (true) {
+	public void addBuilding() {
+		if (canEdit) {
 			buildingList.add(this.currentBuilding);
 		}
 	}
@@ -123,8 +131,8 @@ public class CampusMap extends JFrame implements ActionListener{
 	/**
 	 * remove target building from building list
 	 */
-	public void removeBuilding (Building targetBuilding, Edit mode) {
-		if (true) {
+	public void removeBuilding (Building targetBuilding) {
+		if (canEdit) {
 			if (buildingList.contains(targetBuilding)) {
 				buildingList.remove(targetBuilding);
 			}
@@ -133,8 +141,8 @@ public class CampusMap extends JFrame implements ActionListener{
 	/**
 	 * remove current building from building list
 	 */
-	public void removeBuilding (Edit mode) {
-		if (true) {
+	public void removeBuilding () {
+		if (canEdit) {
 			if (buildingList.contains(this.currentBuilding)) {
 				buildingList.remove(this.currentBuilding);
 			}
@@ -151,12 +159,12 @@ public class CampusMap extends JFrame implements ActionListener{
 		
 		if(e.getSource() == addBtn) {
 			//add selected building to building list
-			addBuilding(firstBuilding, mode);
+			addBuilding(firstBuilding);
 			System.out.println(buildingList);
 		}
 		else if (e.getSource() == removeBtn) {
 			//remove selected building from building list
-			removeBuilding(firstBuilding, mode);
+			removeBuilding(firstBuilding);
 			System.out.println(buildingList);
 		}
 		else if (e.getSource() == helpBtn) {
@@ -169,6 +177,7 @@ public class CampusMap extends JFrame implements ActionListener{
 			f.add(new JList(buildingList.toArray()));
 	        f.pack();
 	        f.setLocationRelativeTo(null);
+	        f.setSize(700,500);
 	        f.setVisible(true);
 		}
 	}

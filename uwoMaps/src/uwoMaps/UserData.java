@@ -15,6 +15,8 @@ public class UserData {
 	
 	private HashMap<String, UserPOI[]> customPOIInfo = new HashMap<String, UserPOI[]>();
 	
+	public HashMap<String, Boolean> canEdit = new HashMap<String, Boolean>();
+	
 
 	UserData(String id, String password){
 		loginInfo.put(id, password);
@@ -32,5 +34,8 @@ public class UserData {
 		return customPOIInfo.get(id);
 	}
 	
+	public Boolean canUserEdit(String id) {
+		return canEdit.get(id);
+	}
 	
 }
