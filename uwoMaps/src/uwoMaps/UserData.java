@@ -11,7 +11,7 @@ public class UserData {
 	 */
 	private HashMap<String, String> loginInfo = new HashMap<String,String>();
 	
-	private HashMap<String, Favourite[]> favInfo = new HashMap<String, Favourite[]>();
+	private HashMap<String, Favourite> favInfo = new HashMap<String, Favourite>();
 	
 	private HashMap<String, UserPOI[]> customPOIInfo = new HashMap<String, UserPOI[]>();
 	
@@ -26,7 +26,7 @@ public class UserData {
 		return loginInfo;
 	}
 	
-	public Favourite[] getFavs(String id) {
+	public Favourite getFavs(String id) {
 		return favInfo.get(id);
 	}
 	
@@ -36,6 +36,10 @@ public class UserData {
 	
 	public Boolean canUserEdit(String id) {
 		return canEdit.get(id);
+	}
+	
+	public void setEdit(String id,Boolean choice) {
+		canEdit.put(id, choice);
 	}
 	
 }

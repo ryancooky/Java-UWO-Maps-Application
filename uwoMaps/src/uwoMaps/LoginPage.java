@@ -27,7 +27,9 @@ public class LoginPage extends JFrame implements ActionListener{
 	JLabel passwordLabel = new JLabel("Password:");
 	JLabel forgotPasswordLabel;
 	JLabel loginResultLabel = new JLabel();
+	
 	public UserData userdata;
+	
 	
 	LoginPage(HashMap<String,String> originalLoginInfo){
 		
