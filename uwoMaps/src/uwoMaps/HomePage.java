@@ -17,6 +17,7 @@ public class HomePage extends JFrame implements ActionListener{
 	JButton myAccountButton = new JButton();
 	
 	JButton goToMapButton = new JButton();
+	JButton myFavouritesButton = new JButton();
 	
 	JLabel buildingsLabel = new JLabel("List of Buildings: ");
 	JLabel favouritesLabel = new JLabel("Favourite POIs: ");
@@ -63,12 +64,17 @@ public class HomePage extends JFrame implements ActionListener{
 		goToMapButton.setText("Go to Map");
 		goToMapButton.setBounds(50, 120, 100, 40);
 		
+		myFavouritesButton.addActionListener(this);
+		myFavouritesButton.setText("Go to my favourites");
+		myFavouritesButton.setBounds(50, 330, 160, 45);
+		
 		searchField.setBounds(350, 120, 240, 40);
 		searchField.setText("search for a class");
 
 		this.add(signOutButton);
 		this.add(myAccountButton);
 		this.add(goToMapButton);
+		this.add(myFavouritesButton);
 		this.add(buildingsLabel);
 		this.add(favouritesLabel);
 		this.add(searchLabel);
@@ -85,11 +91,18 @@ public class HomePage extends JFrame implements ActionListener{
 		if (e.getSource() == goToMapButton) {
 			openCampusMap();
 		}
+		if (e.getSource() == myFavouritesButton) {
+			openMyFavourites();
+		}
 		
 	}
 	
 	public void openCampusMap(/*your parms*/){
 		CampusMap campusFrm = new CampusMap();
 	}
-
+	
+	public void openMyFavourites() {
+		FavouritesPage fp = new FavouritesPage();
+	}
+	
 }
