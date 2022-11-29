@@ -17,7 +17,7 @@ public class regularPOI extends POI{
 	/*
 	 * The description is any extra details for the category: 
 	 * navigation(stairwell, door, or elevator), CS(computer lab, 
-	 *  and collaborative room), washroom (male or female), etc
+	 * and collaborative room), washroom (male or female), etc
 	 */
 	private String description;
 	

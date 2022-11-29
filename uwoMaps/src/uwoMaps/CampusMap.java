@@ -49,6 +49,8 @@ public class CampusMap extends JFrame implements ActionListener{
 	JButton secondBuildingButton = new JButton("Second Building");
 	JButton thirdBuildingButton = new JButton("Third Building");
 	
+	JButton backButton = new JButton("Go Back");
+	
 	boolean canEdit;
 	
 	/*
@@ -56,6 +58,9 @@ public class CampusMap extends JFrame implements ActionListener{
 	 * setting the button and list frame
 	 */
 	public CampusMap() {
+		
+		Main.MFRAME.setVisible(false);
+		Main.CMAP = this;
 		
 		//Next version should include way to store selected building data
 		firstBuilding  = new Building("Alumni Hall");
@@ -79,6 +84,8 @@ public class CampusMap extends JFrame implements ActionListener{
 		removeBtn.addActionListener(this);
 		helpBtn.setBounds(380,340,140,30);
 		helpBtn.addActionListener(this);
+		backButton.setBounds(0, 0, 120, 40);
+		backButton.addActionListener(this);
 		
 		Building middlesexCollege = new Building();
 		middlesexCollege.buildingName = "Middlesex College";
@@ -119,6 +126,7 @@ public class CampusMap extends JFrame implements ActionListener{
 		this.add(firstBuildingButton);
 		this.add(secondBuildingButton);
 		this.add(thirdBuildingButton);
+		this.add(backButton);
 		
 		//added by dalter4@uwo.ca, checks the userdata if user can edit and sets the variable
 		//if (Main.loginFRAME.userdata.canUserEdit(Main.MFRAME.user)) {
@@ -185,22 +193,31 @@ public class CampusMap extends JFrame implements ActionListener{
 	 */
 	public void actionPerformed(ActionEvent e) {
 		
+		if (e.getSource() == firstBuildingButton) {
+			openBuilding(firstBuilding);
+		}
+		if (e.getSource() == secondBuildingButton) {
+			openBuilding(secondBuilding);
+		}
+		if (e.getSource() == thirdBuildingButton) {
+			openBuilding(thirdBuilding);
+		}
 		if(e.getSource() == addBtn) {
 			//add selected building to building list
 			addBuilding(firstBuilding);
 			System.out.println(buildingList);
 		}
-		else if (e.getSource() == removeBtn) {
+		if (e.getSource() == removeBtn) {
 			//remove selected building from building list
 			removeBuilding(firstBuilding);
 			System.out.println(buildingList);
 		}
-		else if (e.getSource() == helpBtn) {
+		if (e.getSource() == helpBtn) {
 			//calling housekeeping class as new frame
 			Housekeeping help = new Housekeeping();
 			System.out.println(buildingList);
 		}
-		else if (e.getSource() == buildingBtn) {
+		if (e.getSource() == buildingBtn) {
 			JFrame f = new JFrame("Building List");
 			f.add(new JList(buildingList.toArray()));
 	        f.pack();
@@ -208,5 +225,13 @@ public class CampusMap extends JFrame implements ActionListener{
 	        f.setSize(700,500);
 	        f.setVisible(true);
 		}
+		if (e.getSource() == backButton) {
+			Main.MFRAME.setVisible(true);
+	        this.dispose();
+		}
+	}
+	
+	public void openBuilding(Building b){
+		BuildingPage bp = new BuildingPage(b);
 	}
 }

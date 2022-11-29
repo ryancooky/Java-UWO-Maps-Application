@@ -8,6 +8,7 @@ public class Main {
 	
 	public static LoginPage loginFRAME;
 	public static HomePage MFRAME;
+	public static CampusMap CMAP;
 	
 	public static void main(String [] args) {
 		
