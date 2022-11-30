@@ -28,8 +28,9 @@ public class Building {
 	public String buildingAddress;
 	public Integer numOfFloors;
 	private Floor currentFloor;
+	public String imageURL;
 	
-	ArrayList<Floor> floors = new ArrayList<>();
+	public ArrayList<Floor> floors = new ArrayList<>();
 	
 	/*
 	 * Constructor that initializes Building with null value

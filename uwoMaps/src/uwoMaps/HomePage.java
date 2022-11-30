@@ -40,6 +40,7 @@ public class HomePage extends JFrame implements ActionListener{
 		this.setLayout(null);
 		this.setSize(700,500);
 		this.setVisible(true);
+		this.setLocationRelativeTo(null);
 		this.setTitle("Uwo Maps Home");
 		
 		user = userId;
