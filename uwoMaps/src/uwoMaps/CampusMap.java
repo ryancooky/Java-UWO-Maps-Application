@@ -92,6 +92,13 @@ public class CampusMap extends JFrame implements ActionListener{
 		middlesexCollege.buildingName = "Middlesex College";
 		middlesexCollege.numOfFloors = 5;
 		middlesexCollege.imageURL = "/MCimages/MC.png";
+		
+		Floor mc1 = new Floor();
+		mc1.floorNum = 1;
+		mc1.imageURL = "/MCimages/MC-1.png";
+		
+		middlesexCollege.floors.add(mc1);
+		
 		Building healthScienceBuilding = new Building();
 		healthScienceBuilding.buildingName = "Health Sciences Building";
 		healthScienceBuilding.numOfFloors = 4;

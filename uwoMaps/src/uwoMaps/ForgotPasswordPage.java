@@ -23,7 +23,7 @@ public class ForgotPasswordPage extends JFrame implements ActionListener{
 	
 	ForgotPasswordPage(){
 		
-		Main.MFRAME.setVisible(false);
+		Main.loginFRAME.setVisible(false);
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(null);

@@ -9,6 +9,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -18,8 +19,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 public class BuildingPage extends JFrame implements ActionListener{
-
-	
 	
 	Building building = new Building();
 	
@@ -29,10 +28,11 @@ public class BuildingPage extends JFrame implements ActionListener{
 	private ImageIcon img;
 	private JPanel background = new JPanel();
 	
-	JButton[] floorButtons = new JButton[10];
+	ArrayList<JButton> floorButtons;
 	
 	public BuildingPage(Building build){
 		Main.CMAP.setVisible(false);
+		Main.BPAGE = this;
 		
 		building = build;
 		numFloors = build.numOfFloors;
@@ -51,19 +51,21 @@ public class BuildingPage extends JFrame implements ActionListener{
 		JLabel label = new JLabel(img, JLabel.CENTER);
 		background.add(label);
 		
-		floorButtons = new JButton[numFloors + 1];
+		floorButtons = new ArrayList<JButton>();
+		
 		
 		int heightOfButton = 0;
-		for (int i = 0; i < floorButtons.length; i++) {
+		for (int i = 0; i < build.numOfFloors + 1; i++) {
 			JButton button = new JButton();
 			button.setText("Floor: " + i);
+			button.setName(String.valueOf(i));
 			button.addActionListener(this);
 			button.setBounds(getWidth() - 100, getHeight() - 40 - heightOfButton, 100, 40);
-			button.setBackground(Color.yellow);
+			button.setBackground(Color.YELLOW);
 			button.setVisible(true);
 			label.add(button);
 			heightOfButton += 40;
-			floorButtons[i] = button;
+			floorButtons.add(button);
 		}
 		
 		background.setBounds(0, 0, getWidth(), getHeight());
@@ -83,18 +85,12 @@ public class BuildingPage extends JFrame implements ActionListener{
 			this.dispose();
 			Main.CMAP.setVisible(true);
 		}
-		if (e.getSource() == floorButtons[0]) {
-			
+		if (floorButtons.contains(e.getSource())) {
+			int index = Integer.parseInt(((JButton)e.getSource()).getName()) - 1;
+			Floor f = building.floors.get(index);
+			FloorPage fp = new FloorPage(building, f);
 		}
 	}
-	
-	 ImageIcon imageSetSize(ImageIcon icon, int i, int j) { // image Size Setting
-			Image x = icon.getImage();  
-			Image y = x.getScaledInstance(i, j, java.awt.Image.SCALE_SMOOTH);
-			ImageIcon result = new ImageIcon(y); 
-			return result;
-	}
-	 
 	
 
 }

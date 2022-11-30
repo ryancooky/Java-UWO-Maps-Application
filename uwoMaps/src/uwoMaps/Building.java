@@ -30,7 +30,7 @@ public class Building {
 	private Floor currentFloor;
 	public String imageURL;
 	
-	ArrayList<Floor> floors = new ArrayList<>();
+	public ArrayList<Floor> floors = new ArrayList<>();
 	
 	/*
 	 * Constructor that initializes Building with null value
