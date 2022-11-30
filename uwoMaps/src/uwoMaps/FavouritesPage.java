@@ -23,6 +23,7 @@ public class FavouritesPage extends JFrame implements ActionListener{
 		backButton.addActionListener(this);
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLocationRelativeTo(null);
 		this.setLayout(null);
 		this.setSize(700,500);
 		this.setVisible(true);

@@ -67,6 +67,7 @@ public class LoginPage extends JFrame implements ActionListener{
 		this.setLayout(null);
 		this.setSize(500,500);
 		this.setVisible(true);
+		this.setLocationRelativeTo(null);
 		this.setTitle("Login");
 		
 		this.add(signInButton);

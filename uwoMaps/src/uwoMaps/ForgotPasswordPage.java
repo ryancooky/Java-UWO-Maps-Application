@@ -29,6 +29,7 @@ public class ForgotPasswordPage extends JFrame implements ActionListener{
 		this.setLayout(null);
 		this.setSize(500,500);
 		this.setVisible(true);
+		this.setLocationRelativeTo(null);
 		this.setTitle("Forgot Password");
 		
 		pageLabel.setBounds(50, 150, 250, 25);

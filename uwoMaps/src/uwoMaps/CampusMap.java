@@ -70,6 +70,7 @@ public class CampusMap extends JFrame implements ActionListener{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(null);
 		this.setSize(700,500);
+		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		this.setTitle("Home");
 		
@@ -90,12 +91,15 @@ public class CampusMap extends JFrame implements ActionListener{
 		Building middlesexCollege = new Building();
 		middlesexCollege.buildingName = "Middlesex College";
 		middlesexCollege.numOfFloors = 5;
+		middlesexCollege.imageURL = "/MCimages/MC.png";
 		Building healthScienceBuilding = new Building();
 		healthScienceBuilding.buildingName = "Health Sciences Building";
 		healthScienceBuilding.numOfFloors = 4;
+		healthScienceBuilding.imageURL = "/HSBimages/HSB.png";
 		Building alumniHall = new Building();
 		alumniHall.buildingName = "Alumni Hall";
 		alumniHall.numOfFloors = 3;
+		alumniHall.imageURL = "/AHimages/AH.png";
 		
 		firstBuilding = middlesexCollege;
 		secondBuilding = healthScienceBuilding;
