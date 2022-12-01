@@ -39,8 +39,8 @@ public class regularPOI extends POI{
 	 * Extra Variables: 
 	 * @param cat - the category for the built in POI
 	 */
-	public regularPOI(String POIname, Floor floor, Boolean vis, String cat) {
-		super(POIname, floor, vis);
+	public regularPOI(String POIname, String buildingName, Floor floor, Boolean vis, String cat) {
+		super(POIname, buildingName, floor, vis);
 		category = cat;
 	}
 

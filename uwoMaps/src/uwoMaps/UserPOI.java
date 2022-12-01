@@ -23,8 +23,8 @@ public class UserPOI extends POI{
 	 * @param vis - whether or not the POI is visible on the map
 	 * 
 	 */
-	public UserPOI(String POIname, Floor floor, Boolean vis) {
-		super(POIname, floor, vis);
+	public UserPOI(String POIname, String buildingName, Floor floor, Boolean vis) {
+		super(POIname, buildingName, floor, vis);
 	}
 	
 	public String getDescription() {

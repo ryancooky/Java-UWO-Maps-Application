@@ -31,16 +31,43 @@ public class POI {
 	 */
 	private Floor onFloor;
 	
+	private String buildingName;
+	
 	/**
 	 * Constructor that initializes all the instance variables
 	 * @param POIname - name of the point of interest
 	 * @param floor - floor that the POI is associated with
 	 * @param vis - whether or not the POI is visible on the map
 	 */
-	public POI(String POIname, Floor floor , Boolean vis) {
+	public POI(String POIname, String buildingName, Floor floor , Boolean vis) {
 		name = POIname;
+		this.buildingName = buildingName;
 		onFloor = floor;
 		visibility = vis;
+	}
+	
+	/**
+	 * Returns the name of the POI
+	 * @return
+	 */
+	public String getName() {
+		return name;
+	}
+	
+	/**
+	 * Sets the name of the POI
+	 * @param newName
+	 */
+	public void setName(String newName) {
+		name = newName;
+	}
+	
+	public String getBuildingName() {
+		return buildingName;
+	}
+	
+	public void setBuildingName(String newName) {
+		buildingName = newName;
 	}
 	
 	/**
