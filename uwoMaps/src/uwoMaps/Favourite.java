@@ -95,7 +95,6 @@ public class Favourite {
 	 */
 	public void unmark(POI poi, String id) {
 		favPOIs.remove(poi);
-		
 		JSONParser jsonParser = new JSONParser();
 		try (FileReader reader = new FileReader("userData.json")) {
 			Object obj = jsonParser.parse(reader);

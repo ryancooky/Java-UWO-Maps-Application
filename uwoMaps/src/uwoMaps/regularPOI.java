@@ -63,5 +63,4 @@ public class regularPOI extends POI{
 	public void setDescription(String descrip) {
 		this.description = descrip;
 	}
-	
 }

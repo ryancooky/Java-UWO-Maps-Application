@@ -34,5 +34,4 @@ public class UserPOI extends POI{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
 }

@@ -94,5 +94,4 @@ public class POI {
 	public void setVisibility(boolean value) {
 		visibility = value;
 	}
-	
 }
