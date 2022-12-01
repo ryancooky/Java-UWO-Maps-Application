@@ -23,7 +23,6 @@ public class Favourite {
 	/**
 	 * @param favPOIs - Linked list to store POI objects that user has favourited
 	 */
-	
 	public static LinkedList<POI> favPOIs = new LinkedList<POI>();
 	
 	/**
@@ -33,6 +32,9 @@ public class Favourite {
 		this.favPOIs = favPOIs;
 	}
 	
+	/**
+	 * Return list of the users favourite POIs
+	 */
 	public ArrayList<POI> getListOfFavs() {
 		return new ArrayList<POI>(favPOIs);
 	}

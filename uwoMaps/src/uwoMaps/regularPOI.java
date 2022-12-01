@@ -1,5 +1,11 @@
 package uwoMaps;
 
+/**
+ * @author Dayton Crombie, dcrombie@uwo.ca
+ * @version 1.0
+ * This class will be used to create regular POIs
+ */
+
 public class regularPOI extends POI{
 	
 	/*
@@ -44,22 +50,37 @@ public class regularPOI extends POI{
 		category = cat;
 	}
 
+	/**
+	 * Return meta data of regular POI
+	 */
 	public MetaData getMetadata() {
 		return metadata;
 	}
 
+	/**
+	 * Set meta data of regular POI
+	 */
 	public void setMetadata(MetaData metadata) {
 		this.metadata = metadata;
 	}
 	
+	/**
+	 * Return category of the refular POI
+	 */
 	public String getCategory() {
 		return category;
 	}
 
+	/**
+	 * Return the description of the regular POI
+	 */
 	public String getDescription() {
 		return description;
 	}
 	
+	/**
+	 * Set the description of regular POI
+	 */
 	public void setDescription(String descrip) {
 		this.description = descrip;
 	}

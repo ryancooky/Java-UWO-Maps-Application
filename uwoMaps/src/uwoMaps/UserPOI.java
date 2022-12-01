@@ -1,5 +1,11 @@
 package uwoMaps;
 
+/**
+ * @author Dayton Crombie, dcrombie@uwo.ca
+ * @version 1.0
+ * This class will be used to create user created POIs
+ */
+
 public class UserPOI extends POI{
 	
 	/*
@@ -27,10 +33,16 @@ public class UserPOI extends POI{
 		super(POIname, buildingName, floor, vis);
 	}
 	
+	/**
+	 * Return the description of the User POI
+	 */
 	public String getDescription() {
 		return description;
 	}
 
+	/**
+	 * Set the description of the User POI
+	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}

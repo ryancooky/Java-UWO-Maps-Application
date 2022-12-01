@@ -62,10 +62,16 @@ public class POI {
 		name = newName;
 	}
 	
+	/**
+	 * Return name of building POI is in
+	 */
 	public String getBuildingName() {
 		return buildingName;
 	}
 	
+	/**
+	 * Set a new name of building the POI is in
+	 */
 	public void setBuildingName(String newName) {
 		buildingName = newName;
 	}
@@ -77,7 +83,6 @@ public class POI {
 	public Floor getFloor() {
 		return onFloor;
 	}
-	
 	
 	/**
 	 * Sets the floor that the POI is asssociated with
