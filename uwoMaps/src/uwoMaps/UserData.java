@@ -161,17 +161,17 @@ public class UserData {
 		
 		JSONArray alumniFavs = (JSONArray) favsList.get("alumni");
 		for (int i = 0; i < alumniFavs.size(); i++) {
-			POI poi = new POI("Alumni Hall " + alumniFavs.get(i), null, false);
+			POI poi = new POI((String) alumniFavs.get(i), "Alumni Hall", null, false);
 			listOfFavs.add(poi);
 		}
 		JSONArray middlesexFavs = (JSONArray) favsList.get("middlesex");
 		for (int i = 0; i < middlesexFavs.size(); i++) {
-			POI poi = new POI("Middlesex College " + middlesexFavs.get(i), null, false);
+			POI poi = new POI((String) middlesexFavs.get(i), "Middlesex College", null, false);
 			listOfFavs.add(poi);
 		}
 		JSONArray healthSciFavs = (JSONArray) favsList.get("healthsci");
 		for (int i = 0; i < healthSciFavs.size(); i++) {
-			POI poi = new POI("Health Sciences Building " + healthSciFavs.get(i), null, false);
+			POI poi = new POI((String) healthSciFavs.get(i), "Health Sciences Building", null, false);
 			listOfFavs.add(poi);
 		}
 		favInfo.put((String) userObject.get("username"), new Favourite(listOfFavs));
@@ -212,17 +212,17 @@ public class UserData {
 		
 		JSONArray alumniUserPOIs = (JSONArray) userPOIsList.get("alumni");
 		for (int i = 0; i < alumniUserPOIs.size(); i++) {
-			UserPOI poi = new UserPOI("Alumni Hall " + alumniUserPOIs.get(i), null, false);
+			UserPOI poi = new UserPOI((String) alumniUserPOIs.get(i), "Alumni Hall", null, false);
 			listOfUserPOIs.add(poi);
 		}
 		JSONArray middlesexPOIs = (JSONArray) userPOIsList.get("middlesex");
 		for (int i = 0; i < middlesexPOIs.size(); i++) {
-			UserPOI poi = new UserPOI("Middlesex College " + middlesexPOIs.get(i), null, false);
+			UserPOI poi = new UserPOI((String) middlesexPOIs.get(i), "Middlesex College", null, false);
 			listOfUserPOIs.add(poi);
 		}
 		JSONArray healthSciPOIs = (JSONArray) userPOIsList.get("healthsci");
 		for (int i = 0; i < healthSciPOIs.size(); i++) {
-			UserPOI poi = new UserPOI("Health Sciences Building " + healthSciPOIs.get(i), null, false);
+			UserPOI poi = new UserPOI((String) healthSciPOIs.get(i), "Health Sciences Building", null, false);
 			listOfUserPOIs.add(poi);
 		}
 		customPOIInfo.put((String) userObject.get("username"), listOfUserPOIs);
