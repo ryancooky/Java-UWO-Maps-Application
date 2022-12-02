@@ -55,8 +55,6 @@ public class Favourite {
 				JSONObject userObject = (JSONObject) tempUser.get("user");
 				if (userObject.get("username").equals(id)) {
 					JSONObject favsList = (JSONObject) userObject.get("favourites");
-					
-					
 					if (poi.getBuildingName().toLowerCase().contains("alumni")) {
 						JSONArray alumniFavs = (JSONArray) favsList.get("alumni");
 						String name = poi.getName();
@@ -106,8 +104,6 @@ public class Favourite {
 				JSONObject userObject = (JSONObject) tempUser.get("user");
 				if (userObject.get("username").equals(id)) {
 					JSONObject favsList = (JSONObject) userObject.get("favourites");
-					
-					
 					if (poi.getBuildingName().toLowerCase().contains("alumni")) {
 						JSONArray alumniFavs = (JSONArray) favsList.get("alumni");
 						String name = poi.getName();
