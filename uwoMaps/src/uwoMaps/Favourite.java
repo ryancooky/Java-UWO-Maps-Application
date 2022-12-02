@@ -158,7 +158,6 @@ public class Favourite {
 	 * @param poi
 	 * @return
 	 */
-	
 	public float[] showFav(POI poi) {
 		if (poi instanceof regularPOI) {
 			regularPOI isRegPOI = (regularPOI) poi;
