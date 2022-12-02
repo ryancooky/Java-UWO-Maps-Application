@@ -101,7 +101,6 @@ public class Building {
 		//check the mode
 		if (true) {
 			floors.add(targetFloor);
-			numOfFloors = numOfFloors + 1;
 		}
 	}
 	
@@ -111,7 +110,6 @@ public class Building {
 	public void addFloor() {
 		if (true) {
 			floors.add(this.currentFloor);
-			numOfFloors = numOfFloors + 1;
 		}
 	}
 	

@@ -83,27 +83,6 @@ public class CampusMap extends JFrame implements ActionListener{
 		helpBtn.addActionListener(this);
 		backButton.setBounds(0, 0, 120, 40);
 		backButton.addActionListener(this);
-//		
-//		Building middlesexCollege = new Building();
-//		middlesexCollege.buildingName = "Middlesex College";
-//		middlesexCollege.numOfFloors = 5;
-//		middlesexCollege.imageURL = "/MCimages/MC.png";
-//		
-//		Floor mc1 = new Floor();
-//		mc1.floorNum = 1;
-//		mc1.imageURL = "/MCimages/MC-1.png";
-//		
-//		middlesexCollege.floors.add(mc1);
-//		
-//		Building healthScienceBuilding = new Building();
-//		healthScienceBuilding.buildingName = "Health Sciences Building";
-//		healthScienceBuilding.numOfFloors = 4;
-//		healthScienceBuilding.imageURL = "/HSBimages/HSB.png";
-//		Building alumniHall = new Building();
-//		alumniHall.buildingName = "Alumni Hall";
-//		alumniHall.numOfFloors = 3;
-//		alumniHall.imageURL = "/AHimages/AH.png";
-		
 		
 		firstBuildingButton.addActionListener(this);
 		firstBuildingButton.setBounds(130, 100, 180, 40);

@@ -27,7 +27,11 @@ public class FloorPage extends JFrame implements ActionListener{
 	int pinPointY;
 	
 	private ImageIcon img;
+	private ImageIcon accessImg;
+	private ImageIcon washroomImg;
+	private ImageIcon plainImg;
 	private ImageIcon pin;
+	private JLabel pinLabel;
 	private JLabel floorMap;
 	private JPanel background = new JPanel();
 	JButton backButton = new JButton("Go back");
@@ -55,18 +59,28 @@ public class FloorPage extends JFrame implements ActionListener{
 		this.setTitle(build.buildingName + " Floor " + f.floorNum);
 		
 		
-		String[] options = {"POI View", "No washrooms", "Plain view"};
+		String[] options = {"POI View", "Accessibility View", "Washroom View" , "Plain View"};
 		viewChoice = new JComboBox(options);
 		viewChoice.setBounds(getWidth() - 140, 20, 120, 60);
 		viewChoice.addActionListener(this);
 		
 		img = new ImageIcon(getClass().getResource(f.imageURL));
 		img = new ImageIcon(img.getImage().getScaledInstance(getWidth() - 300, getHeight(), Image.SCALE_SMOOTH));
+		
+		accessImg = new ImageIcon(getClass().getResource(f.accessibilityViewURL));
+		accessImg = new ImageIcon(accessImg.getImage().getScaledInstance(getWidth() - 300, getHeight(), Image.SCALE_SMOOTH));
+		
+		washroomImg =  new ImageIcon(getClass().getResource(f.washroomViewURL));
+		washroomImg = new ImageIcon(washroomImg.getImage().getScaledInstance(getWidth() - 300, getHeight(), Image.SCALE_SMOOTH));
+		
+		plainImg = new ImageIcon(getClass().getResource(f.blankViewURL));
+		plainImg = new ImageIcon(plainImg.getImage().getScaledInstance(getWidth() - 300, getHeight(), Image.SCALE_SMOOTH));
+		
 		floorMap = new JLabel(img, JLabel.CENTER);
 		
 		pin = new ImageIcon(getClass().getResource("/other/pin.png"));
 		pin = new ImageIcon(pin.getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH));
-		JLabel pinLabel = new JLabel(pin, JLabel.CENTER);
+		pinLabel = new JLabel(pin, JLabel.CENTER);
 		
 		
 		background.setBounds(0, 0, getWidth(), getHeight());
@@ -102,18 +116,7 @@ public class FloorPage extends JFrame implements ActionListener{
 		
 		background.add(floorMap);
 		
-		floorMap.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				pinPointX = e.getX();
-				pinPointY = e.getY();
-				isPinDropped = true;
-				pinLabel.setBounds(pinPointX, pinPointY, 10, 20);
-				floorMap.add(pinLabel);
-				createPOIButton.setVisible(true);
-				addToFavButton.setVisible(true);
-			}
-		});
+		addPinActionListener(floorMap);
 		
 		this.add(background);
 	}
@@ -128,13 +131,35 @@ public class FloorPage extends JFrame implements ActionListener{
 		if (e.getSource() == viewChoice) {
 			int index = viewChoice.getSelectedIndex();
 			if (index == 0) {
-				//Do nothing
+				//change map back to regular POI view
+				floorMap.setIcon(img);
 			} else if (index == 1){
-				//switch image of floor to the image with no bathrooms
+				//change floorMap to accessibility view image
+				floorMap.setIcon(accessImg);
+			} else if (index == 2){
+				//change floorMap to washroom view
+				floorMap.setIcon(washroomImg);
 			} else {
-				//switch image to the plain image of the floor
+				//change floorMap to blank view
+				floorMap.setIcon(plainImg);
 			}
 		}
+	}
+	
+	public void addPinActionListener(JLabel label) {
+
+		label.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				pinPointX = e.getX();
+				pinPointY = e.getY();
+				isPinDropped = true;
+				pinLabel.setBounds(pinPointX, pinPointY, 10, 20);
+				floorMap.add(pinLabel);
+				createPOIButton.setVisible(true);
+				addToFavButton.setVisible(true);
+			}
+		});
 	}
 
 }
