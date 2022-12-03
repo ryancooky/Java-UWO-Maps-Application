@@ -1,11 +1,13 @@
 package uwoMaps;
 
+import java.awt.Desktop.Action;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 
+import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -71,6 +73,7 @@ public class HomePage extends JFrame implements ActionListener{
 		
 		searchField.setBounds(350, 120, 240, 40);
 		searchField.setText("search for a class");
+		
 
 		this.add(signOutButton);
 		this.add(myAccountButton);

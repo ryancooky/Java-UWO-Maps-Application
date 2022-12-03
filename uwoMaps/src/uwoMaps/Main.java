@@ -177,4 +177,5 @@ public class Main {
 		HEALTHSCIENCESBUILDING = healthScienceBuilding;
 		ALUMNIHALL = alumniHall;
 	}
+	
 }
