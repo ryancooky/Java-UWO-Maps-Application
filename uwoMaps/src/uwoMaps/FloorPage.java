@@ -40,13 +40,16 @@ public class FloorPage extends JFrame implements ActionListener{
 	
 	private JPanel enterFavInfoPanel = new JPanel();
 	private JPanel enterCustomInfoPanel = new JPanel();
+	private JPanel poiOutputPanel = new JPanel();
 	
 	private JLabel favAddedSuccessLabel = new JLabel("POI added to Favourites");
 	private JLabel customAddedSuccessLabel = new JLabel("New Custom POI added");
+	private JLabel poiOutputLabel = new JLabel("");
 	
 	JButton backButton = new JButton("Go back");
 	JButton closeAddFavButton = new JButton("Cancel");
 	JButton closeAddCustomButton = new JButton("Cancel");
+	JButton closePoiOutputButton = new JButton("X");
 	JButton zoomInButton = new JButton("+");
 	JButton zoomOutButton= new JButton("-");
 	
@@ -187,6 +190,15 @@ public class FloorPage extends JFrame implements ActionListener{
 		customAddedSuccessLabel.setForeground(Color.green);
 		customAddedSuccessLabel.setVisible(false);;
 		
+		poiOutputPanel.setBounds(120, 50, 400, 400);
+		poiOutputPanel.setLayout(null);
+		poiOutputPanel.setVisible(false);
+		poiOutputLabel.setBounds(50, 50, 120, 300);
+		closePoiOutputButton.setBounds(0, 0, 20, 20);
+		
+		poiOutputPanel.add(poiOutputLabel);
+		poiOutputPanel.add(closePoiOutputButton);
+		
 		this.add(backButton);
 		this.add(zoomInButton);
 		this.add(zoomOutButton);
@@ -267,6 +279,18 @@ public class FloorPage extends JFrame implements ActionListener{
 			p.xCoordinate = pinPointX;
 			p.yCoordinate = pinPointY;
 			
+		}
+		if (e.getSource() ==  listPOIsButton) {
+			poiOutputPanel.setVisible(true);
+			String output = "";
+			for (POI p :floor.POIs) {
+				String str = p.getName() + "\n";
+				output += str;
+			}
+			poiOutputLabel = new JLabel(output);
+		}
+		if (e.getSource() == closePoiOutputButton) {
+			poiOutputPanel.setVisible(false);
 		}
 	}
 	
