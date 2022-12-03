@@ -11,11 +11,12 @@ public class Main {
 	public static CampusMap CMAP;
 	public static BuildingPage BPAGE;
 	
+	public static String CURRENTUSER;
+	
 	public static Building MIDDLESEXCOLLEGE;
 	public static Building HEALTHSCIENCESBUILDING;
 	public static Building ALUMNIHALL;
 	public static UserData users;
-	
 	
 	public static void main(String [] args) {
 		

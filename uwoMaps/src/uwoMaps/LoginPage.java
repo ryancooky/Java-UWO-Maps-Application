@@ -108,6 +108,7 @@ public class LoginPage extends JFrame implements ActionListener{
 			if (loginInfo.get(proposedUser).equals(proposedPassword)) {
 				//credentials are correct, proceed to ask if editing
 				userdata = new UserData(proposedUser, proposedPassword);
+				Main.CURRENTUSER = proposedUser;
 				HomePage homePage = new HomePage(proposedUser);
 			} else {
 				loginResultLabel.setForeground(Color.red);
