@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -34,7 +35,9 @@ public class FloorPage extends JFrame implements ActionListener{
 	private ImageIcon washroomImg;
 	private ImageIcon plainImg;
 	private ImageIcon pin;
+	private ImageIcon customPOIPin;
 	private JLabel pinLabel;
+	private JLabel purplePinLabel;
 	private JLabel floorMap;
 	private JPanel background = new JPanel();
 	
@@ -72,7 +75,7 @@ public class FloorPage extends JFrame implements ActionListener{
 	
 
 	public FloorPage(Building build, Floor f) {
-		Main.BPAGE.setVisible(false);
+		//Main.BPAGE.setVisible(false);
 		insideOf = build;
 		floor = f;
 		isPinDropped = false;
@@ -182,7 +185,7 @@ public class FloorPage extends JFrame implements ActionListener{
 		enterFavInfoPanel.add(submitFavButton);
 		enterFavInfoPanel.add(closeAddFavButton);
 		
-		favAddedSuccessLabel.setBounds(40, 200, 120, 40);
+		favAddedSuccessLabel.setBounds(30, 200, 150, 40);
 		favAddedSuccessLabel.setForeground(Color.green);
 		favAddedSuccessLabel.setVisible(false);
 		
@@ -190,14 +193,24 @@ public class FloorPage extends JFrame implements ActionListener{
 		customAddedSuccessLabel.setForeground(Color.green);
 		customAddedSuccessLabel.setVisible(false);;
 		
-		poiOutputPanel.setBounds(120, 50, 400, 400);
+		poiOutputPanel.setBounds(140, 50, 400, 600);
 		poiOutputPanel.setLayout(null);
 		poiOutputPanel.setVisible(false);
-		poiOutputLabel.setBounds(50, 50, 120, 300);
+		poiOutputLabel.setBounds(50, 50, 200, 350);
 		closePoiOutputButton.setBounds(0, 0, 20, 20);
+		closePoiOutputButton.addActionListener(this);
 		
 		poiOutputPanel.add(poiOutputLabel);
 		poiOutputPanel.add(closePoiOutputButton);
+		
+		String output = "";
+		for (POI p :floor.POIs) {
+			String str = "<html>" +  p.getName() + "<br>";
+			output += str;
+		}
+		output+= "</html>";
+		poiOutputLabel.setText(output);
+		poiOutputPanel.add(poiOutputLabel);
 		
 		this.add(backButton);
 		this.add(zoomInButton);
@@ -208,6 +221,7 @@ public class FloorPage extends JFrame implements ActionListener{
 		this.add(addToFavButton);
 		this.add(enterFavInfoPanel);
 		this.add(enterCustomInfoPanel);
+		this.add(poiOutputPanel);
 		this.add(favAddedSuccessLabel);
 		
 		background.add(floorMap);
@@ -242,6 +256,7 @@ public class FloorPage extends JFrame implements ActionListener{
 		}
 		if (e.getSource() == addToFavButton) {
 			enterFavInfoPanel.setVisible(true);
+			favAddedSuccessLabel.setVisible(false);
 		}
 		if (e.getSource() == closeAddFavButton) {
 			enterFavInfoPanel.setVisible(false);
@@ -258,13 +273,14 @@ public class FloorPage extends JFrame implements ActionListener{
 			p.yCoordinate = pinPointY;
 			
 			//favourites is Main.users.getFavs(Main.CURRENTUSER)
-			Favourite fav = Main.users.getFavs(Main.CURRENTUSER);
+			Favourite fav = UserData.getFavs(Main.CURRENTUSER);
 			fav.mark(p, Main.CURRENTUSER);
 			enterFavInfoPanel.setVisible(false);
 			favAddedSuccessLabel.setVisible(true);
 		}
 		if (e.getSource() == createPOIButton) {
 			enterCustomInfoPanel.setVisible(true);
+			customAddedSuccessLabel.setVisible(false);
 		}
 		if (e.getSource() == closeAddCustomButton){
 			enterCustomInfoPanel.setVisible(false);
@@ -273,21 +289,25 @@ public class FloorPage extends JFrame implements ActionListener{
 			String POIname = customNameField.getText();
 			String POIdesc = customDescriptionField.getText();
 			
+			
 			UserPOI p = new UserPOI(POIname, insideOf.buildingName, floor, true);
 			
 			p.setDescription(POIdesc);
 			p.xCoordinate = pinPointX;
 			p.yCoordinate = pinPointY;
 			
+			UserPOI.addUserPOI(POIname, insideOf.buildingName , Main.CURRENTUSER);
+			floor.POIs.add(p);
+			customPOIPin = new ImageIcon(getClass().getResource("/other/purplePin.png"));
+			customPOIPin = new ImageIcon(customPOIPin.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH));
+			purplePinLabel = new JLabel(customPOIPin, JLabel.CENTER);
+			
+			floorMap.add(purplePinLabel);
+			enterCustomInfoPanel.setVisible(false);
+			customAddedSuccessLabel.setVisible(true);
 		}
 		if (e.getSource() ==  listPOIsButton) {
 			poiOutputPanel.setVisible(true);
-			String output = "";
-			for (POI p :floor.POIs) {
-				String str = p.getName() + "\n";
-				output += str;
-			}
-			poiOutputLabel = new JLabel(output);
 		}
 		if (e.getSource() == closePoiOutputButton) {
 			poiOutputPanel.setVisible(false);

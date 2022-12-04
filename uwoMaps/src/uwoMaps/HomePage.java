@@ -1,13 +1,16 @@
 package uwoMaps;
 
+import java.awt.Color;
 import java.awt.Desktop.Action;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 import javax.swing.AbstractAction;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -16,17 +19,19 @@ import javax.swing.JTextField;
 public class HomePage extends JFrame implements ActionListener{
 	
 	JButton signOutButton = new JButton();
-	JButton myAccountButton = new JButton();
 	
 	JButton goToMapButton = new JButton();
 	JButton myFavouritesButton = new JButton();
 	
+	private ImageIcon weatherImg; 
+	
 	JLabel buildingsLabel = new JLabel("List of Buildings: ");
 	JLabel favouritesLabel = new JLabel("Favourite POIs: ");
-	JLabel searchLabel = new JLabel("Search: ");
 	JLabel weatherLabel = new JLabel("Today's weather: ");
+	JLabel userLabel = new JLabel();
+	JLabel minWeatherLabel = new JLabel();
+	JLabel maxWeatherLabel = new JLabel();
 	
-	JTextField searchField = new JTextField();
 	
 	Favourite[] favList;
 	
@@ -51,18 +56,37 @@ public class HomePage extends JFrame implements ActionListener{
 		
 		favouritesLabel.setBounds(50,280,150,40);
 		
-		searchLabel.setBounds(350, 80, 150, 40);
 		
-		weatherLabel.setBounds(350, 280, 150, 40);
+		weatherImg = new ImageIcon(getClass().getResource("/other/weatherLogo.png"));
+		weatherImg = new ImageIcon(weatherImg.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH));
+		
+		weatherLabel.setBounds(350, 280, 200, 40);
+		weatherLabel.setIcon(weatherImg);
+
+		minWeatherLabel.setBounds(350, 320, 200, 40);
+		maxWeatherLabel.setBounds(350, 360, 200, 40);
+		
+		userLabel.setBounds(550, 0, 170, 40);
+		userLabel.setText("Logged in as: " + userId);
+		
+		
+		double[] results = new double[2];
+		try {
+			results = Weather.getWeather();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String minWeather = String.valueOf(results[0]);
+		String maxWeather = String.valueOf(results[1]);
+		
+		minWeatherLabel.setText("Min temp today: " + minWeather + " °C");
+		maxWeatherLabel.setText("Max temp today: " + maxWeather + " °C");
 		
 		signOutButton.addActionListener(this);
 		signOutButton.setText("Sign Out");
 		signOutButton.setBounds(0, 0, 120, 40);
-		
-		myAccountButton.addActionListener(this);
-		myAccountButton.setText("My Account");
-		myAccountButton.setBounds(600,0,100,40);
-		
+	
 		goToMapButton.addActionListener(this);
 		goToMapButton.setText("Go to Map");
 		goToMapButton.setBounds(50, 120, 100, 40);
@@ -71,19 +95,18 @@ public class HomePage extends JFrame implements ActionListener{
 		myFavouritesButton.setText("Go to my favourites");
 		myFavouritesButton.setBounds(50, 330, 160, 45);
 		
-		searchField.setBounds(350, 120, 240, 40);
-		searchField.setText("search for a class");
+		
 		
 
 		this.add(signOutButton);
-		this.add(myAccountButton);
 		this.add(goToMapButton);
 		this.add(myFavouritesButton);
 		this.add(buildingsLabel);
 		this.add(favouritesLabel);
-		this.add(searchLabel);
 		this.add(weatherLabel);
-		this.add(searchField);
+		this.add(minWeatherLabel);
+		this.add(userLabel);
+		this.add(maxWeatherLabel);
 	}
 
 	@Override
@@ -107,6 +130,10 @@ public class HomePage extends JFrame implements ActionListener{
 	
 	public void openMyFavourites() {
 		FavouritesPage fp = new FavouritesPage();
+	}
+	
+	public void openPOI(Building build, Floor f) {
+		FloorPage fp = new FloorPage(build, f);
 	}
 	
 }

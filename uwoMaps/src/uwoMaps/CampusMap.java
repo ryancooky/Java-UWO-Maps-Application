@@ -1,5 +1,6 @@
 package uwoMaps;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JTextField;
 
 /**
  * 
@@ -40,11 +42,12 @@ public class CampusMap extends JFrame implements ActionListener{
 	ArrayList<Building> buildingList = new ArrayList<>();
 	
 	JLabel titleLabel = new JLabel("Building Maps");
-	JButton buildingBtn = new JButton("Building List");
-	JButton addBtn = new JButton("Add");
-	JButton removeBtn = new JButton("Remove");
-	JButton helpBtn = new JButton("Help");
+	JLabel searchLabel = new JLabel("Search: ");
+	JLabel searchNotFoundLabel = new JLabel("No POI found");
 	
+	JButton buildingBtn = new JButton("Building List");
+	JButton helpBtn = new JButton("Help");
+	JButton searchFieldButton = new JButton("Go");
 	JButton firstBuildingButton = new JButton("First Building");
 	JButton secondBuildingButton = new JButton("Second Building");
 	JButton thirdBuildingButton = new JButton("Third Building");
@@ -52,6 +55,7 @@ public class CampusMap extends JFrame implements ActionListener{
 	JButton backButton = new JButton("Go Back");
 	
 	boolean canEdit;
+	JTextField searchField = new JTextField();
 	
 	/*
 	 * Constructor that initializes all the instance variables
@@ -73,12 +77,17 @@ public class CampusMap extends JFrame implements ActionListener{
 		titleLabel.setBounds(130, 60, 200, 35);
 		titleLabel.setFont(new Font(null, Font.BOLD, 20));
 		
-		buildingBtn.setBounds(380,100,140,30);
+		searchLabel.setBounds(350, 80, 150, 40);
+		searchFieldButton.setBounds(600, 120, 40, 40);
+		searchFieldButton.addActionListener(this);
+		searchNotFoundLabel.setBounds(350, 160, 150, 40);
+		searchNotFoundLabel.setForeground(Color.red);
+		searchNotFoundLabel.setVisible(false);
+		searchField.setBounds(350, 120, 240, 40);
+		searchField.setText("search for a class");
+		
+		buildingBtn.setBounds(380,200,140,30);
 		buildingBtn.addActionListener(this);
-		addBtn.setBounds(380,200,140,30);
-		addBtn.addActionListener(this);
-		removeBtn.setBounds(380,270,140,30);
-		removeBtn.addActionListener(this);
 		helpBtn.setBounds(380,340,140,30);
 		helpBtn.addActionListener(this);
 		backButton.setBounds(0, 0, 120, 40);
@@ -103,13 +112,15 @@ public class CampusMap extends JFrame implements ActionListener{
 		this.add(titleLabel);
 		this.add(buildingBtn);
 
-		this.add(addBtn);
-		this.add(removeBtn);
 		this.add(helpBtn);
 		this.add(firstBuildingButton);
 		this.add(secondBuildingButton);
 		this.add(thirdBuildingButton);
 		this.add(backButton);
+		this.add(searchLabel);
+		this.add(searchField);
+		this.add(searchNotFoundLabel);
+		this.add(searchFieldButton);
 		
 		//added by dalter4@uwo.ca, checks the userdata if user can edit and sets the variable
 		//if (Main.loginFRAME.userdata.canUserEdit(Main.MFRAME.user)) {
@@ -187,16 +198,6 @@ public class CampusMap extends JFrame implements ActionListener{
 			setBuilding(thirdBuilding);
 			openBuilding(thirdBuilding);
 		}
-		if(e.getSource() == addBtn) {
-			//add selected building to building list
-			addBuilding(firstBuilding);
-			System.out.println(buildingList);
-		}
-		if (e.getSource() == removeBtn) {
-			//remove selected building from building list
-			removeBuilding(firstBuilding);
-			System.out.println(buildingList);
-		}
 		if (e.getSource() == helpBtn) {
 			//calling housekeeping class as new frame
 			Housekeeping help = new Housekeeping();
@@ -214,9 +215,24 @@ public class CampusMap extends JFrame implements ActionListener{
 			Main.MFRAME.setVisible(true);
 	        this.dispose();
 		}
+		if (e.getSource() == searchFieldButton) {
+			String search = searchField.getText();
+			for (POI p : Main.POILIST) {
+				if (p.getName().equals(search)) {
+					Floor f = p.getFloor();
+					Building b = f.locatedIn;
+					openPOI(b,f);
+				}
+			}
+			searchNotFoundLabel.setVisible(true);
+		}
 	}
 	
 	public void openBuilding(Building b){
 		BuildingPage bp = new BuildingPage(b);
+	}
+	
+	public void openPOI(Building build, Floor f) {
+		FloorPage fp = new FloorPage(build, f);
 	}
 }

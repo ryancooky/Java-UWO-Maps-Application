@@ -3,6 +3,7 @@ package uwoMaps;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Main {
 	
@@ -16,17 +17,15 @@ public class Main {
 	public static Building MIDDLESEXCOLLEGE;
 	public static Building HEALTHSCIENCESBUILDING;
 	public static Building ALUMNIHALL;
-	public static UserData users;
+	public static ArrayList<POI> POILIST;
 	
 	public static void main(String [] args) {
 		
 		getDefaultMap();
 		//test user
-		users = new UserData("1", "2");
-		
 		
 		//Start the application by creating a loginFrame, passing in all the user data
-		loginFRAME = new LoginPage(users.getLoginInfo());
+		loginFRAME = new LoginPage(UserData.getLoginInfo());
 
 		
 	}
@@ -52,6 +51,7 @@ public class Main {
 		Floor mc1 = new Floor();
 		mc1.floorNum = 1; 
 		mc1.imageURL = "/MCimages/MC-1.png";
+		mc1.locatedIn = middlesexCollege;
 		mc1.accessibilityViewURL = "/MCimages/MC-1(A).png";
 		mc1.washroomViewURL = "/MCimages/MC-1(W).png";
 		mc1.blankViewURL = "/MCimages/MC-1(B).png";
@@ -60,6 +60,7 @@ public class Main {
 		Floor mc2 = new Floor();
 		mc2.floorNum = 2;
 		mc2.imageURL = "/MCimages/MC-2.png";
+		mc2.locatedIn = middlesexCollege;
 		mc2.accessibilityViewURL = "/MCimages/MC-2(A).png";
 		mc2.washroomViewURL = "/MCimages/MC-2(W).png";
 		mc2.blankViewURL = "/MCimages/MC-2(B).png";
@@ -67,6 +68,7 @@ public class Main {
 		Floor mc3 = new Floor();
 		mc3.floorNum = 3;
 		mc3.imageURL = "/MCimages/MC-3.png";
+		mc3.locatedIn = middlesexCollege;
 		mc3.accessibilityViewURL = "/MCimages/MC-3(A).png";
 		mc3.washroomViewURL = "/MCimages/MC-3(W).png";
 		mc3.blankViewURL = "/MCimages/MC-3(B).png";
@@ -74,6 +76,7 @@ public class Main {
 		Floor mc4 = new Floor();
 		mc4.floorNum = 4;
 		mc4.imageURL = "/MCimages/MC-4.png";
+		mc4.locatedIn = middlesexCollege;
 		mc4.accessibilityViewURL = "/MCimages/MC-4(A).png";
 		mc4.washroomViewURL = "/MCimages/MC-4(W).png";
 		mc4.blankViewURL = "/MCimages/MC-4(B).png";
@@ -81,6 +84,7 @@ public class Main {
 		Floor mc5 = new Floor();
 		mc5.floorNum = 5;
 		mc5.imageURL = "/MCimages/MC-5.png";
+		mc5.locatedIn = middlesexCollege;
 		mc5.accessibilityViewURL = "/MCimages/MC-5(A).png";
 		mc5.washroomViewURL = "/MCimages/MC-5.png";
 		mc5.blankViewURL = "/MCimages/MC-5(B).png";
@@ -106,6 +110,7 @@ public class Main {
 		Floor hsb1 = new Floor();
 		hsb1.floorNum = 1;
 		hsb1.imageURL = "/HSBimages/HSB-1.png";
+		hsb1.locatedIn = healthScienceBuildingBuilding;
 		hsb1.accessibilityViewURL = "/HSBimages/HSB-1(A).png";
 		hsb1.washroomViewURL = "/HSBimages/HSB-1(W).png";
 		hsb1.blankViewURL = "/HSBimages/HSB-1(B).png";
@@ -114,6 +119,7 @@ public class Main {
 		Floor hsb2 = new Floor();
 		hsb2.floorNum = 2;
 		hsb2.imageURL = "/HSBimages/HSB-2.png";
+		hsb2.locatedIn = healthScienceBuildingBuilding;
 		hsb2.accessibilityViewURL = "/HSBimages/HSB-2(A).png";
 		hsb2.washroomViewURL = "/HSBimages/HSB-2(W).png";
 		hsb2.blankViewURL = "/HSBimages/HSB-2(B).png";
@@ -121,6 +127,7 @@ public class Main {
 		Floor hsb3 = new Floor();
 		hsb3.floorNum = 3;
 		hsb3.imageURL = "/HSBimages/HSB-3.png";
+		hsb3.locatedIn = healthScienceBuildingBuilding;
 		hsb3.accessibilityViewURL = "/HSBimages/HSB-3(A).png";
 		hsb3.washroomViewURL = "/HSBimages/HSB-3(W).png";
 		hsb3.blankViewURL = "/HSBimages/HSB-3(B).png";
@@ -128,6 +135,7 @@ public class Main {
 		Floor hsb4 = new Floor();
 		hsb4.floorNum = 4;
 		hsb4.imageURL = "/HSBimages/HSB-4.png";
+		hsb4.locatedIn = healthScienceBuildingBuilding;
 		hsb4.accessibilityViewURL = "/HSBimages/HSB-4(A).png";
 		hsb4.washroomViewURL = "/HSBimages/HSB-4(W).png";
 		hsb4.blankViewURL = "/HSBimages/HSB-4(B).png";
@@ -148,6 +156,7 @@ public class Main {
 		Floor ah1 = new Floor();
 		ah1.floorNum = 1;
 		ah1.imageURL = "/AHimages/AH-1.png";
+		ah1.locatedIn = alumniHall;
 		ah1.accessibilityViewURL = "/AHimages/AH-1(A).png";
 		ah1.washroomViewURL = "/AHimages/AH-1(W).png";
 		ah1.blankViewURL = "/AHimages/AH-1(B).png";
@@ -155,6 +164,7 @@ public class Main {
 		Floor ah2 = new Floor();
 		ah2.floorNum = 2;
 		ah2.imageURL = "/AHimages/AH-2.png";
+		ah2.locatedIn = alumniHall;
 		ah2.accessibilityViewURL = "/AHimages/AH-2(A).png";
 		ah2.washroomViewURL = "/AHimages/AH-2(W).png";
 		ah2.blankViewURL = "/AHimages/AH-2(B).png";
@@ -162,6 +172,7 @@ public class Main {
 		Floor ah3 = new Floor();
 		ah3.floorNum = 3;
 		ah3.imageURL = "/AHimages/AH-3.png";
+		ah3.locatedIn = alumniHall;
 		ah3.accessibilityViewURL = "/AHimages/AH-3(A).png";
 		ah3.washroomViewURL = "/AHimages/AH-3.png";
 		ah3.blankViewURL = "/AHimages/AH-3(B).png";
@@ -552,6 +563,20 @@ public class Main {
 		mc5.POIs.add(MCstairwell1F5);
 		mc5.POIs.add(MCstairwell2F5);
 		mc5.POIs.add(MCelevator1F5);
+		
+		ArrayList<POI> list = mc1.POIs;
+		list.addAll(mc2.POIs);
+		list.addAll(mc3.POIs);
+		list.addAll(mc4.POIs);
+		list.addAll(mc5.POIs);
+		list.addAll(hsb1.POIs);
+		list.addAll(hsb2.POIs);
+		list.addAll(hsb3.POIs);
+		list.addAll(hsb4.POIs);
+		list.addAll(ah1.POIs);
+		list.addAll(ah2.POIs);
+		list.addAll(ah3.POIs);
+		POILIST = list;
 	}
 	
 }
