@@ -13,8 +13,23 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+/**
+ * 
+ * @author david alter dalter4@uwo.ca
+ * @version 1.3
+ * @since 1.0
+ * 
+ * This class represents a login page, the first frame you see when you start the 
+ * application
+ * 
+ * <p>
+ * From the LoginPage, if you log in with the correct credentials, you will be taken
+ * to the home page, there is also an option for forget password on this page
+ * <p>
+ */
 public class LoginPage extends JFrame implements ActionListener{
 	
+	//Save login info locally
 	HashMap<String,String> loginInfo = new HashMap<String,String>();
 	
 	JButton signInButton = new JButton("Sign in");
@@ -95,8 +110,9 @@ public class LoginPage extends JFrame implements ActionListener{
 		
 	}
 	
-	public void openForgotPass(/*your parms*/){
-		ForgotPasswordPage oFrm = new ForgotPasswordPage(/*your parms*/);
+	public void openForgotPass(){
+		//open new forgot password frame
+		ForgotPasswordPage oFrm = new ForgotPasswordPage();
     }
 	
 	public void openHome() {
@@ -111,10 +127,12 @@ public class LoginPage extends JFrame implements ActionListener{
 				Main.CURRENTUSER = proposedUser;
 				HomePage homePage = new HomePage(proposedUser);
 			} else {
+				//show incorrect password label if user is correct
 				loginResultLabel.setForeground(Color.red);
 				loginResultLabel.setText("Incorrect Password");
 			}
 		} else {
+			//show no user found if user does not exist
 			loginResultLabel.setForeground(Color.red);
 			loginResultLabel.setText("No userId found");
 		}

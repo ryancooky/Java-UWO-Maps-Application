@@ -14,16 +14,15 @@ import javax.swing.JTextField;
 
 /**
  * 
- * @author Minsoo Park, mpark227@uwo.ca
- * @version 1.2
+ * @author Minsoo Park, mpark227@uwo.ca , David Alter dalter4@uwo.ca
+ * @version 1.11
  * @since 1.0
  * 
  * This class represents the basic template for a Campus Map
  * 
  * <p>
  * CampusMap class is base of our map application. It has building list which contain
- * our main 3 buildings. But the add and remove method are restricted to
- * authorized user.
+ * our main 3 buildings.
  * <p>
  */
 public class CampusMap extends JFrame implements ActionListener{
@@ -200,8 +199,7 @@ public class CampusMap extends JFrame implements ActionListener{
 		}
 		if (e.getSource() == helpBtn) {
 			//calling housekeeping class as new frame
-			Housekeeping help = new Housekeeping();
-			System.out.println(buildingList);
+			System.out.println("Use the buttons to navigate the application");
 		}
 		if (e.getSource() == buildingBtn) {
 			JFrame f = new JFrame("Building List");
@@ -216,11 +214,13 @@ public class CampusMap extends JFrame implements ActionListener{
 	        this.dispose();
 		}
 		if (e.getSource() == searchFieldButton) {
+			//Get value of search field and loop through POIList to find it by name
 			String search = searchField.getText();
 			for (POI p : Main.POILIST) {
 				if (p.getName().equals(search)) {
 					Floor f = p.getFloor();
 					Building b = f.locatedIn;
+					//open the map in a new frame
 					openPOI(b,f);
 				}
 			}

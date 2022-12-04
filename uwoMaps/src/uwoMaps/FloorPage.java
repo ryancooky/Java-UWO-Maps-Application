@@ -21,41 +21,130 @@ import javax.swing.JTextField;
 
 import uwoMaps.Building;
 
+/**
+ * 
+ * @author david alter <dalter4@uwo.ca>
+ * @version 1.13
+ * @since 1.0
+ * 
+ * This class represents the floorpage, which the user gets taken to after the pick a floor number
+ * on a building in the buildingPage. From here, you are able to add custom POIs, add POIs to your favourites,
+ * and list all the POIs on the floor in question
+ * 
+ * <p>
+ * This class is set up dynamically so it will open the correct blueprint in the correct building,
+ * while still keeping the functionality
+ * <p>
+ */
+
 public class FloorPage extends JFrame implements ActionListener{
 	
+	/*
+	 * Building that the floor is inside of
+	 */
 	Building insideOf;
+	/*
+	 * Floor that is associated with page (user selected)
+	 */
 	Floor floor;
 	
+	/*
+	 * Check variable to see if certain labels should be displayed, if a user clicks on
+	 * the map, this gets set to true 
+	 */
 	boolean isPinDropped; 
+	
+	/*
+	 * X position of selector pin
+	 */
 	int pinPointX;
+	/*
+	 * Y position of selector pin
+	 */
 	int pinPointY;
 	
+	/*
+	 * POI view of blueprint
+	 */
 	private ImageIcon img;
+	/*
+	 * Accessibility view of blueprint, same image with elevators only
+	 */
 	private ImageIcon accessImg;
+	/*
+	 * Washroom view of blueprint, same image with washrooms only
+	 */
 	private ImageIcon washroomImg;
+	/*
+	 * Plain view of blueprint, nothing highlighted
+	 */
 	private ImageIcon plainImg;
+	/*
+	 * Image of a red pin, pops up when a user clicks on the map (selector pin)
+	 */
 	private ImageIcon pin;
+	/*
+	 * Image of purple pin, to signify that a custom POI has been placed
+	 */
 	private ImageIcon customPOIPin;
+	/*
+	 * Label to put selector pin on
+	 */
 	private JLabel pinLabel;
+	/*
+	 * Label to put Custom POI pin on
+	 */
 	private JLabel purplePinLabel;
+	/*
+	 * Label to put correct image of map on
+	 */
 	private JLabel floorMap;
+	/*
+	 * Panel to put floorMap Label on in the JFrame
+	 */
 	private JPanel background = new JPanel();
 	
+	/*
+	 * panel that is used to collect information about adding to favourites  list
+	 */
 	private JPanel enterFavInfoPanel = new JPanel();
+	/*
+	 * panel that is used to collect information about creating a custom POI
+	 */
 	private JPanel enterCustomInfoPanel = new JPanel();
+	/*
+	 *panel that is used to output a list of POIs on the given floor 
+	 */
 	private JPanel poiOutputPanel = new JPanel();
 	
+	/*
+	 * Label that will only show up if the POI has been successfully added to favourites list
+	 */
 	private JLabel favAddedSuccessLabel = new JLabel("POI added to Favourites");
 	private JLabel customAddedSuccessLabel = new JLabel("New Custom POI added");
+	
+	/*
+	 * Label that will list all POIs
+	 */
 	private JLabel poiOutputLabel = new JLabel("");
 	
+	/*
+	 * Various operation buttons to close panels or go back to the buildingPage
+	 */
 	JButton backButton = new JButton("Go back");
 	JButton closeAddFavButton = new JButton("Cancel");
 	JButton closeAddCustomButton = new JButton("Cancel");
 	JButton closePoiOutputButton = new JButton("X");
+	
+	/*
+	 *Zoom in, Zoom out buttons, currently no functionality 
+	 */
 	JButton zoomInButton = new JButton("+");
 	JButton zoomOutButton= new JButton("-");
 	
+	/*
+	 *Input fields to go on various Panels 
+	 */
 	JTextField favPOINameField = new JTextField();
 	JTextField favPOIDescriptionField = new JTextField();
 	JTextField customNameField = new JTextField();
@@ -71,6 +160,10 @@ public class FloorPage extends JFrame implements ActionListener{
 	JButton addToFavButton = new JButton("Add to Favourites");
 	JButton submitFavButton = new JButton("Add to my Favourites");
 	JButton submitCustomButton = new JButton("Add Custom POI");
+	
+	/*
+	 * Combo Box to pick which view the user wants to see
+	 */
 	JComboBox viewChoice; 
 	
 
@@ -80,6 +173,9 @@ public class FloorPage extends JFrame implements ActionListener{
 		floor = f;
 		isPinDropped = false;
 		
+		/*
+		 * Set screen size to full screen
+		 */
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -161,7 +257,6 @@ public class FloorPage extends JFrame implements ActionListener{
 		enterCustomInfoPanel.add(submitCustomButton);
 		enterCustomInfoPanel.add(closeAddCustomButton);
 		
-		
 		/*
 		 * Initializing favourite form components
 		 */
@@ -202,6 +297,10 @@ public class FloorPage extends JFrame implements ActionListener{
 		
 		poiOutputPanel.add(poiOutputLabel);
 		poiOutputPanel.add(closePoiOutputButton);
+		
+		/*
+		 * Get the text to get POI names and set it to poiOutputLabel
+		 */
 		
 		String output = "";
 		for (POI p :floor.POIs) {
@@ -255,14 +354,16 @@ public class FloorPage extends JFrame implements ActionListener{
 			}
 		}
 		if (e.getSource() == addToFavButton) {
+			//set the panel to be visible
 			enterFavInfoPanel.setVisible(true);
 			favAddedSuccessLabel.setVisible(false);
 		}
 		if (e.getSource() == closeAddFavButton) {
+			//set the panel to be invisible
 			enterFavInfoPanel.setVisible(false);
 		}
 		if (e.getSource() == submitFavButton) {
-			
+			//add point to the favourite list (write to JSON)
 			String POIname = favPOINameField.getText();
 			String POIdesc = favPOIDescriptionField.getText();
 			
@@ -272,20 +373,22 @@ public class FloorPage extends JFrame implements ActionListener{
 			p.xCoordinate = pinPointX;
 			p.yCoordinate = pinPointY;
 			
-			//favourites is Main.users.getFavs(Main.CURRENTUSER)
 			Favourite fav = UserData.getFavs(Main.CURRENTUSER);
 			fav.mark(p, Main.CURRENTUSER);
 			enterFavInfoPanel.setVisible(false);
 			favAddedSuccessLabel.setVisible(true);
 		}
 		if (e.getSource() == createPOIButton) {
+			//set the panel to be visible
 			enterCustomInfoPanel.setVisible(true);
 			customAddedSuccessLabel.setVisible(false);
 		}
 		if (e.getSource() == closeAddCustomButton){
+			//set the panel to be invisible
 			enterCustomInfoPanel.setVisible(false);
 		}
 		if (e.getSource() == submitCustomButton) {
+			//Drop a purple pin where the custom POI was clicked, and add that point to POIs
 			String POIname = customNameField.getText();
 			String POIdesc = customDescriptionField.getText();
 			
@@ -314,6 +417,10 @@ public class FloorPage extends JFrame implements ActionListener{
 		}
 	}
 	
+	/*
+	 * Action listener which is added to the blueprint, if it is clicked,
+	 * drop a red pin where the click happened
+	 */
 	public void addPinActionListener(JLabel label) {
 
 		label.addMouseListener(new MouseAdapter() {

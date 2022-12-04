@@ -10,6 +10,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+/**
+ * 
+ * @author david alter dalter4@uwo.ca
+ * @version 1.2
+ * @since 1.0
+ * 
+ * This class represents the forgot password page, it contains an email field to send
+ * a reset password link but there was not enough time to implement it.
+ */
+
+
 public class ForgotPasswordPage extends JFrame implements ActionListener{
 	
 	JLabel pageLabel = new JLabel("Forgot Password");
@@ -55,6 +66,7 @@ public class ForgotPasswordPage extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == backButton) {
+			//go back to loginPage
 			Main.loginFRAME.setVisible(true);
 	        this.dispose();
 		}

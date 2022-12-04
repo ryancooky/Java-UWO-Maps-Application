@@ -18,6 +18,22 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+/**
+ * 
+ * @author david alter dalter4@uwo.ca
+ * @version 1.7
+ * @since 1.0
+ * 
+ * This class represents the Building page which is based on which building you clicked, 
+ * You can click on the suide buttons to navigate to a floor in the building
+ * 
+ * <p>
+ * This class is set up dynamically so it will open the correct number of buttons to the 
+ * correct number of floors in the building
+ * <p>
+ */
+
+
 public class BuildingPage extends JFrame implements ActionListener{
 	
 	Building building = new Building();

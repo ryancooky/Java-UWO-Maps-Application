@@ -5,6 +5,25 @@ import javax.swing.JFrame;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * 
+ * @author davidalter dalter4@uwo.ca
+ * @version 1.6
+ * @since 1.0
+ * 
+ * This class represents the main method in our application, the starting point
+ * of the program 
+ * 
+ * <p>
+ * In order to run the program, You will need a few Referenced Libraries, (.jar)
+ * files: commons-codec-1.11.jar, commons-logging-1.2.jar, httpclient-4.5.13.jar, httpcore-4.4.13.jar,
+ * json-20220924.jar, and finally json-simple-1.1.1.jar.
+ * 
+ * You will need to use the userdata from userData.json to login with the
+ * correct credentials.
+ * <p>
+ */
+
 public class Main {
 	
 	public static LoginPage loginFRAME;
@@ -17,12 +36,17 @@ public class Main {
 	public static Building MIDDLESEXCOLLEGE;
 	public static Building HEALTHSCIENCESBUILDING;
 	public static Building ALUMNIHALL;
+	
+	/*
+	 * List of all POIs between the buildings 
+	 */
 	public static ArrayList<POI> POILIST;
 	
 	public static void main(String [] args) {
 		
+		//Create the default buildings
 		getDefaultMap();
-		//test user
+		
 		
 		//Start the application by creating a loginFrame, passing in all the user data
 		loginFRAME = new LoginPage(UserData.getLoginInfo());
@@ -46,7 +70,7 @@ public class Main {
 		middlesexCollege.imageURL = "/MCimages/MC.png";
 		
 		/*
-		 * Creating the five floors and setting images
+		 * Creating the five floors and setting variables
 		 */
 		Floor mc1 = new Floor();
 		mc1.floorNum = 1; 
@@ -55,7 +79,6 @@ public class Main {
 		mc1.accessibilityViewURL = "/MCimages/MC-1(A).png";
 		mc1.washroomViewURL = "/MCimages/MC-1(W).png";
 		mc1.blankViewURL = "/MCimages/MC-1(B).png";
-		
 		
 		Floor mc2 = new Floor();
 		mc2.floorNum = 2;
@@ -105,7 +128,7 @@ public class Main {
 		healthScienceBuildingBuilding.imageURL = "/HSBimages/HSB.png";
 		
 		/*
-		 * Creating the four floors and setting images
+		 * Creating the four floors and setting variables
 		 */
 		Floor hsb1 = new Floor();
 		hsb1.floorNum = 1;

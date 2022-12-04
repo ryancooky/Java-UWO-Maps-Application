@@ -16,6 +16,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+/**
+ * 
+ * @author david alter dalter4@uwo.ca
+ * @version 1.5
+ * @since 1.0
+ * 
+ * This class represents the home page of the application, from here you can go to your
+ * favourites, look at the weather for the day, or go to the Maop
+ * 
+ */
+
 public class HomePage extends JFrame implements ActionListener{
 	
 	JButton signOutButton = new JButton();
@@ -32,9 +43,7 @@ public class HomePage extends JFrame implements ActionListener{
 	JLabel minWeatherLabel = new JLabel();
 	JLabel maxWeatherLabel = new JLabel();
 	
-	
-	Favourite[] favList;
-	
+	//save current user
 	public String user;
 	
 	
@@ -69,7 +78,7 @@ public class HomePage extends JFrame implements ActionListener{
 		userLabel.setBounds(550, 0, 170, 40);
 		userLabel.setText("Logged in as: " + userId);
 		
-		
+		//retrieve weather from function
 		double[] results = new double[2];
 		try {
 			results = Weather.getWeather();
@@ -94,9 +103,6 @@ public class HomePage extends JFrame implements ActionListener{
 		myFavouritesButton.addActionListener(this);
 		myFavouritesButton.setText("Go to my favourites");
 		myFavouritesButton.setBounds(50, 330, 160, 45);
-		
-		
-		
 
 		this.add(signOutButton);
 		this.add(goToMapButton);
@@ -124,7 +130,7 @@ public class HomePage extends JFrame implements ActionListener{
 		
 	}
 	
-	public void openCampusMap(/*your parms*/){
+	public void openCampusMap(){
 		CampusMap campusFrm = new CampusMap();
 	}
 	
