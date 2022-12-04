@@ -60,7 +60,6 @@ public class Weather {
 		}
 		
 		URIBuilder builder = new URIBuilder(requestBuilder.toString());
-		
 		builder.setParameter("unitGroup", unitGroup)
 			.setParameter("key", apiKey);
 
